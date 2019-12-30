@@ -523,20 +523,20 @@ class Roleplay(BaseCog):
         # Build Embed
         embed = discord.Embed()
         embed.description = f"**{author.mention} выебывается**"
-        embed.set_footer(text="Made with the help of nekos.life")
+        embed.set_footer(text="made by Phil Anskulainen")
         embed.set_image(url=images[i])
         await ctx.send(embed=embed)
 
     @commands.command()
     @commands.bot_has_permissions(embed_links=True)
     async def sex(self, ctx, *, user: discord.Member):
-        """Be sex towards someone!"""
+        """Pokes a user!"""
 
         author = ctx.message.author
-        images = await self.config.smug()
+        images = await self.config.sex()
 
-        smug = await self.fetch_nekos_life(ctx, "sex")
-        images.extend(sex)
+        nekos = await self.fetch_nekos_life(ctx, "sex")
+        images.extend(nekos)
 
         mn = len(images)
         i = randint(0, mn - 1)
