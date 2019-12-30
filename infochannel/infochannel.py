@@ -181,7 +181,6 @@ class InfoChannel(Cog):
         guild_data = await self.config.guild(guild).all()
         botcount = guild_data["bot_count"]
         onlinecount = guild_data["online_count"]
-        voicecount = guild_data["voice_count"]
 
         # Gets count of bots
         bots = lambda x: x.bot
