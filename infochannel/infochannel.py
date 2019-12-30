@@ -27,8 +27,8 @@ class InfoChannel(Cog):
         default_guild = {
             "channel_id": None,
             "botchannel_id": None,
-            "onlinechannel_id": None,
-            "voicechannel_id": None,
+            "onlinechannel_id": True,
+            "voicechannel_id": True,
             "member_count": True,
             "bot_count": False,
             "online_count": False,
