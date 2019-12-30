@@ -1,0 +1,18 @@
+{
+  "author": [
+    "Anskulainen"
+  ],
+  "bot_version": [
+    3,
+    0,
+    0
+  ],
+  "description": "Создает канал с информацией о количестве онлайна",
+  "hidden": false,
+  "install_msg": "TСпасибо что установили InfoChannel. Начните с `[p]load infochannel`, затем `[p]help InfoChannel`",
+  "short": "Обновление сервернго канала информации",
+  "tags": [
+    "Anskulainen",
+    "utils"
+  ]
+}
