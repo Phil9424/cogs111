@@ -527,7 +527,7 @@ class Roleplay(BaseCog):
         embed.set_image(url=images[i])
         await ctx.send(embed=embed)
 
-        @commands.command()
+    @commands.command()
     @commands.bot_has_permissions(embed_links=True)
     async def sex(self, ctx, *, user: discord.Member):
         """Be sex towards someone!"""
