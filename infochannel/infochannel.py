@@ -199,7 +199,7 @@ class InfoChannel(Cog):
         human_msg = f" 👯 Всего участников: {num}"
 
         # Gets count of voice online
-        num = guild.voice_channels.members
+        num = guild.voice_channels.voice_status
         voice_msg = f" 🎙️ В голосовых: {num}" 
 
         channel_id = guild_data["channel_id"]
