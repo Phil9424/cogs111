@@ -530,13 +530,10 @@ class Roleplay(BaseCog):
     @commands.command()
     @commands.bot_has_permissions(embed_links=True)
     async def sex(self, ctx, *, user: discord.Member):
-        """Pokes a user!"""
+        """Sex with user!"""
 
         author = ctx.message.author
         images = await self.config.sex()
-
-        nekos = await self.fetch_nekos_life(ctx, "sex")
-        images.extend(nekos)
 
         mn = len(images)
         i = randint(0, mn - 1)
