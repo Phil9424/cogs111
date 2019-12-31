@@ -198,10 +198,6 @@ class InfoChannel(Cog):
         num = len([m for m in guild.members if total(m)])
         human_msg = f" 👯 Всего участников: {num}"
 
-        # Gets count of voice online
-        num = guild.voice_channels.voice_status
-        voice_msg = f" 🎙️ В голосовых: {num}" 
-
         channel_id = guild_data["channel_id"]
         if channel_id is None:
             return
