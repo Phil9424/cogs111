@@ -28,7 +28,7 @@ class InfoChannel(Cog):
             "channel_id": None,
             "botchannel_id": None,
             "onlinechannel_id": True,
-            "voicechannel_id": True,
+            "voicechannel_id": False,
             "member_count": True,
             "bot_count": False,
             "online_count": False,
