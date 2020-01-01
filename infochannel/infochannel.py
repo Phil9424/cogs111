@@ -69,6 +69,7 @@ class InfoChannel(Cog):
             await ctx.send("Cancelled")
             return
 
+
         if channel is None:
             await self.make_infochannel(guild)
         else:
@@ -180,12 +181,10 @@ class InfoChannel(Cog):
 
         botchannel_id = guild_data["botchannel_id"]
         onlinechannel_id = guild_data["onlinechannel_id"]
-        voicechannel_id = guild_data["voicechannel_id"]
         channel_id = guild_data["channel_id"]
         channel: discord.VoiceChannel = guild.get_channel(channel_id)
         botchannel: discord.VoiceChannel = guild.get_channel(botchannel_id)
         onlinechannel: discord.VoiceChannel = guild.get_channel(onlinechannel_id)
-        voicechannel: discord.VoiceChannel = guild.get_channel(voicechannel_id)
 
         if guild_data["member_count"]:
             name = "{} ".format(human_msg)
@@ -198,11 +197,7 @@ class InfoChannel(Cog):
 
         if onlinecount:
             name = "{} ".format(online_msg)
-            await onlinechannel.edit(reason="InfoChannel update", name=name)
-
-        if voicecount:
-            name = "{} ".format(voice_msg)
-            await voicechannel.edit(reason="InfoChannel update", name=name)    
+            await onlinechannel.edit(reason="InfoChannel update", name=name)    
 
     @listener()
     async def on_member_join(self, member: discord.Member):
