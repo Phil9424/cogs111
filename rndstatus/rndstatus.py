@@ -114,7 +114,7 @@ class RndStatus(commands.Cog):
         if botstats:
             total_users = sum(len(s.members) for s in self.bot.guilds)
             servers = str(len(self.bot.guilds))
-            botstatus = f"за| {total_users} пользователями "
+            botstatus = f"на {total_users} участников "
             if self.last_change == None:
                 type = await self.config.type()
                 if type == 1:
