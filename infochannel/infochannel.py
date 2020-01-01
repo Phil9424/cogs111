@@ -27,8 +27,7 @@ class InfoChannel(Cog):
         default_guild = {
             "channel_id": None,
             "botchannel_id": None,
-            "onlinechannel_id": True,
-            "voicechannel_id": False,
+            "onlinechannel_id": None,
             "member_count": True,
             "bot_count": False,
             "online_count": False,
@@ -99,20 +98,6 @@ class InfoChannel(Cog):
         else:
             await ctx.send("InfoChannel for bot count has been disabled.")
 
-    @infochannelset.command(name="voicecount")
-    async def _infochannelset_voicecount(self, ctx: commands.Context, enabled: bool = None):
-        """
-        Toggle an infochannel that shows the amount of voicecount in the server
-        """
-        guild = ctx.guild
-        if enabled is None:
-            enabled = not await self.config.guild(guild).voice_count()
-        await self.config.guild(guild).voice_count.set(enabled)
-        if enabled:
-            await ctx.send("InfoChannel for voice count has been enabled.")
-        else:
-            await ctx.send("InfoChannel for voice count has been disabled.")
-
     @infochannelset.command(name="onlinecount")
     async def _infochannelset_onlinecount(self, ctx: commands.Context, enabled: bool = None):
         """
@@ -130,7 +115,6 @@ class InfoChannel(Cog):
     async def make_infochannel(self, guild: discord.Guild):
         botcount = await self.config.guild(guild).bot_count()
         onlinecount = await self.config.guild(guild).online_count()
-        voicecount = await self.config.guild(guild).voice_count()
         overwrites = {
             guild.default_role: discord.PermissionOverwrite(connect=False),
             guild.me: discord.PermissionOverwrite(manage_channels=True, connect=True),
@@ -151,10 +135,6 @@ class InfoChannel(Cog):
                 "Placeholder", reason="InfoChannel onlinecount", overwrites=overwrites
             )
             await self.config.guild(guild).onlinechannel_id.set(onlinechannel.id)
-        if voicecount:
-            voicecount = await guild.create_voice_channel(
-                "Placeholder", reason="InfoChannel voicecount", overwrites=overwrites
-            )    
 
         await self.update_infochannel(guild)
 
@@ -162,10 +142,8 @@ class InfoChannel(Cog):
         guild_data = await self.config.guild(guild).all()
         botchannel_id = guild_data["botchannel_id"]
         onlinechannel_id = guild_data["onlinechannel_id"]
-        voicechannel_id = guild_data["voicechannel_id"]
         botchannel: discord.VoiceChannel = guild.get_channel(botchannel_id)
         onlinechannel: discord.VoiceChannel = guild.get_channel(onlinechannel_id)
-        voicechannel: discord.VoiceChannel = guild.get_channel(voicechannel_id)
         channel_id = guild_data["channel_id"]
         channel: discord.VoiceChannel = guild.get_channel(channel_id)
         await channel.delete(reason="InfoChannel delete")
@@ -173,8 +151,6 @@ class InfoChannel(Cog):
             await botchannel.delete(reason="InfoChannel delete")
         if onlinechannel_id is not None:
             await onlinechannel.delete(reason="InfoChannel delete")
-        if voicechannel_id is not None:
-            await voicechannel.delete(reason="Infochannel delete")    
         await self.config.guild(guild).clear()
 
     async def update_infochannel(self, guild: discord.Guild):
